@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center justify-center px-4 bg-background">
       <div className="max-w-md w-full text-center space-y-8">
         <div className="space-y-3">
-          <h1 className="text-5xl font-bold tracking-tight text-primary">Naseh</h1>
+          <h1 className="text-5xl font-bold tracking-tight text-primary">NasehAI</h1>
           <p className="text-lg text-muted">
             Smart company policies, powered by AI
           </p>

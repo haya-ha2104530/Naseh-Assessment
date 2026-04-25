@@ -77,7 +77,7 @@ export default function PoliciesPage() {
                 <button
                   onClick={(e) => { e.stopPropagation(); handleDelete(p.id); }}
                   className="opacity-0 group-hover:opacity-100 text-muted hover:text-primary transition-all text-xs ml-2 shrink-0">
-                  🗑️
+                  X
                 </button>
               </div>
             ))
@@ -110,7 +110,7 @@ export default function PoliciesPage() {
                   <button
                     onClick={() => setEditing(true)}
                     className="text-xs text-muted hover:text-primary transition-colors px-3 py-1.5 rounded-lg border border-primary/10">
-                    ✏️ Edit
+                     Edit
                   </button>
                 )}
               </div>
