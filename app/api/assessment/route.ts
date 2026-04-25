@@ -11,7 +11,6 @@ export async function POST(req: Request) {
   if (existing.length > 0) {
     await db.delete(assessment);
   }
-
   await db.insert(assessment).values({
     companyName,
     companyEmail,
@@ -27,4 +26,9 @@ export async function GET() {
   const data = await db.select().from(assessment).limit(1);
   if (data.length === 0) return NextResponse.json({ assessment: null });
   return NextResponse.json({ assessment: data[0] });
+}
+
+export async function DELETE() {
+  await db.delete(assessment);
+  return NextResponse.json({ success: true });
 }

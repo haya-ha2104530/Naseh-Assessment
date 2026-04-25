@@ -22,20 +22,28 @@ export default function AssessmentPage() {
   });
 
   useEffect(() => {
-    fetch("/api/assessment")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.assessment) {
-          setFormData({
-            companyName: data.assessment.companyName,
-            companyEmail: data.assessment.companyEmail,
-            companyLocation: data.assessment.companyLocation,
-            primaryActivity: data.assessment.primaryActivity,
-            shareholders: JSON.parse(data.assessment.shareholders),
-          });
-        }
-      });
-  }, []);
+  fetch("/api/assessment")
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.assessment) {
+        setFormData({
+          companyName: data.assessment.companyName,
+          companyEmail: data.assessment.companyEmail,
+          companyLocation: data.assessment.companyLocation,
+          primaryActivity: data.assessment.primaryActivity,
+          shareholders: JSON.parse(data.assessment.shareholders),
+        });
+      } else {
+        setFormData({
+          companyName: "",
+          companyEmail: "",
+          companyLocation: "",
+          primaryActivity: "",
+          shareholders: [],
+        });
+      }
+    });
+}, []);
 
   const step = steps[currentStep];
   const progress = (currentStep / steps.length) * 100;
