@@ -39,7 +39,7 @@ npm install
 
 3. Create a `.env.local` file in the root with the following:
 GEMINI_API_KEY=your_gemini_api_key_here
-
+Get your API key at [aistudio.google.com](https://aistudio.google.com)
 
 4. Set up the database:
 ```bash
