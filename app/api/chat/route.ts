@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { db } from "@/db";
-import { assessment, messages } from "@/db/schema";
+import { assessment, messages, policies } from "@/db/schema";
 import { NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       Important: Always write in your own words. Never quote or reproduce legal texts verbatim.`
     : "You are NasehAI, an AI company policy assistant. Always write in your own words.";
 
-  const model = genAI.getGenerativeModel({ 
+  const model = genAI.getGenerativeModel({
     model: "gemini-2.5-flash",
     systemInstruction: systemContext,
   });
@@ -40,6 +40,13 @@ export async function POST(req: Request) {
 
   const result = await chat.sendMessage(message);
   const reply = result.response.text();
+
+  // If the reply looks like a policy, save it
+  if (reply.toLowerCase().includes("policy") && reply.length > 500) {
+    const titleMatch = reply.match(/^#+ (.+)/m);
+    const title = titleMatch ? titleMatch[1] : "Generated Policy";
+    await db.insert(policies).values({ title, content: reply });
+  }
 
   await db.insert(messages).values({ role: "assistant", content: reply });
 

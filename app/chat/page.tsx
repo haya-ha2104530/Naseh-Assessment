@@ -88,9 +88,14 @@ export default function ChatPage() {
         </button>
         <div className="mt-auto space-y-2">
           <button
+            onClick={() => window.location.href = "/policies"}
+            className="w-full text-left px-3 py-2 text-sm text-muted hover:text-primary transition-colors rounded-xl hover:bg-surface">
+            📄 View Policies
+          </button>
+          <button
             onClick={() => window.location.href = "/assessment"}
             className="w-full text-left px-3 py-2 text-sm text-muted hover:text-primary transition-colors rounded-xl hover:bg-surface">
-            ✏️ Edit Assessment
+            Edit Assessment
           </button>
           <button
             onClick={async () => {
@@ -98,7 +103,7 @@ export default function ChatPage() {
               window.location.href = "/assessment";
             }}
             className="w-full text-left px-3 py-2 text-sm text-muted hover:text-primary transition-colors rounded-xl hover:bg-surface">
-            🗑️ Delete Assessment
+            Delete Assessment
           </button>
         </div>
       </div>
